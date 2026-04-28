@@ -99,9 +99,7 @@ artifacts:
 Use this when you need to scope the investigation to the past month — for example, April 2026:
 
 ```bash
-sudo ./uac -p profiles/noury_sniper.yaml \
-  --start-date 2026-04-01 \
-  /home/elnoury/DFIR_Artifacts/new1
+sudo ./uac -p profiles/noury_sniper.yaml --start-date 2026-04-01 "Out Path Path"
 ```
 
 > **What `--start-date` does:** UAC filters file collection and log parsing to only include artifacts modified or written **on or after** the given date. This dramatically reduces output size and collection time by skipping older, irrelevant data. You're telling the tool: *"I only care about what happened from this date forward."*
@@ -113,9 +111,7 @@ sudo ./uac -p profiles/noury_sniper.yaml \
 When you know the exact day of the incident:
 
 ```bash
-sudo ./uac -p profiles/noury_sniper.yaml \
-  --start-date 2026-04-21 \
-  /home/elnoury/DFIR_Artifacts/new1
+sudo ./uac -p profiles/noury_sniper.yaml --start-date 2026-04-21 "Out Path Path"
 ```
 
 > This is the most precise mode. Collecting a single day means the smallest output, fastest run time, and the cleanest dataset for analysis. Use this when you have an IOC or alert timestamp pinpointing the incident.
@@ -127,9 +123,7 @@ sudo ./uac -p profiles/noury_sniper.yaml \
 When your window is the past 7 days:
 
 ```bash
-sudo ./uac -p profiles/noury_sniper.yaml \
-  --start-date 2026-04-21 \
-  /home/elnoury/DFIR_Artifacts/new1
+sudo ./uac -p profiles/noury_sniper.yaml --start-date 2026-04-21 "Out Path Path"
 ```
 
 > Set `--start-date` to exactly 7 days before today. For a week ending April 28, 2026, start from April 21. The collection will capture all relevant artifacts from that 7-day window forward.
@@ -205,12 +199,10 @@ The output `april_fixed1.csv` can be opened directly in:
 
 ```bash
 # Step 1: Run the profile — collect April 2026 artifacts
-sudo ./uac -p profiles/noury_sniper.yaml \
-  --start-date 2026-04-01 \
-  /home/elnoury/DFIR_Artifacts/new1
+sudo ./uac -p profiles/noury_sniper.yaml --start-date 2026-04-01 "Out Path Path"
 
 # Step 2: Navigate to the output directory
-cd /home/elnoury/DFIR_Artifacts/new1
+cd "Out Path Path"
 
 # Step 3: Extract bodyfile from the archive (if compressed)
 # UAC outputs a .tar.gz — extract it first
