@@ -1,0 +1,40 @@
+name: noury_sniper
+description: Mid-tier fast triage. Optimized for 15-minute collection.
+artifacts:
+
+  # --- 1. MODIFIERS ---
+  - live_response/modifiers/*
+
+  # --- 2. VOLATILE DATA (Memory, Processes, Network) ---
+  - live_response/process/ps.yaml
+  - live_response/process/pstree.yaml
+  - live_response/process/lsof.yaml
+  - live_response/process/pstat.yaml
+  - live_response/process/procstat.yaml
+  - live_response/process/fstat.yaml
+  - live_response/network/*
+
+  # --- 3. STEALTH & SYSTEM STATE ---
+  - chkrootkit/*
+  - live_response/system/* # This covers live users, crons, and mounts
+
+  # --- 4. CONFIGURATIONS & PERSISTENCE (On-Disk) ---
+  - files/system/*
+
+  # --- 5. USER ACTIVITY & HISTORY ---
+  - files/shell/*
+  - files/ssh/*
+  - files/applications/git.yaml
+  - files/applications/wget.yaml
+  - files/applications/lesshst.yaml
+  - files/applications/nano.yaml
+  - files/applications/viminfo.yaml
+
+  # --- 6. LOGS (Evidence) ---
+  - files/logs/*
+
+  - files/browsers/* # Browser histories, downloads, and cache
+
+  - files/packages/* # Yum/Apt histories to find malicious package installations
+
+  - bodyfile/bodyfile.yaml
